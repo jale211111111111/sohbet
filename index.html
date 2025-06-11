@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sohbet Uygulaması</title>
+  <link href="style.css" rel="stylesheet" />
+  <script>
+    let nickname = localStorage.getItem("nickname") || "";
+    let canSend = true;
+
+    function getHTTPObject() {
+      if (window.XMLHttpRequest) return new XMLHttpRequest();
+      else if (window.ActiveXObject) return new ActiveXObject("Microsoft.XMLHTTP");
+      else {
+        alert("Tarayıcınız AJAX desteklemiyor");
+        return null;
+      }
+    }
+    
+    
+
+    function sendMessage() {
+      const msg = document.getElementById('msg').value.trim();
+      if (!msg || !canSend) return;
+
+      canSend = false;
+      document.getElementById("msg").disabled = true;
+      document.getElementById("sendBtn").disabled = true;
+
+      const http = getHTTPObject();
+      http.open("POST", "message.php", true);
+      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      http.onreadystatechange = () => {
+        if (http.readyState === 4 && http.status === 200) {
+          document.getElementById("msg").value = "";
+          document.getElementById("msg").focus();
+          loadMessages();
+        }
+      };
+      http.send("nick=" + encodeURIComponent(nickname) + "&msg=" + encodeURIComponent(msg));
+
+      setTimeout(() => {
+        canSend = true;
+        document.getElementById("msg").disabled = false;
+        document.getElementById("sendBtn").disabled = false;
+      }, 10000);
+    }
+
+    function loadMessages() {
+      const http = getHTTPObject();
+      http.open("GET", "messages.php", true);
+      http.onreadystatechange = () => {
+        if (http.readyState === 4 && http.status === 200) {
+          const resultDiv = document.getElementById("result");
+          resultDiv.innerHTML = http.responseText;
+          resultDiv.scrollTop = resultDiv.scrollHeight;
+        }
+      };
+      http.send(null);
+    }
+
+    function setNickname() {
+      const input = document.getElementById("nicknameInput");
+      nickname = input.value || "İsimsiz";
+      localStorage.setItem("nickname", nickname);
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("chatContainer").style.display = "block";
+      loadMessages();
+      setInterval(loadMessages, 5000);
+    }
+
+    function handleKey(e) {
+      if (e.key === "Enter") sendMessage();
+    }
+  </script>
+</head>
+<body>
+  <div id="loginForm">
+    <h3>Lütfen nickinizi girin</h3>
+    <input type="text" id="nicknameInput" placeholder="Takma ad..." />
+    <button onclick="setNickname()">Giriş</button>
+  </div>
+
+  <div id="chatContainer" style="display:none;">
+    <div id="result" class="chat-box"></div>
+    <div class="input-area">
+      <input type="text" id="msg" onkeyup="handleKey(event)" placeholder="Mesajınızı yazın..." />
+      <button id="sendBtn" onclick="sendMessage()">Gönder</button>
+    </div>
+  </div>
+</body>
+</html>
+<div class="time-display" id="liveClock"></div>
+
+<script>
+function updateClock() {
+  document.getElementById('liveClock').innerText = new Date().toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+</script>

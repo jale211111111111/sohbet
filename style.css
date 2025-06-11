@@ -1,0 +1,94 @@
+/* TEMEL YAPI - HER CİHAZ İÇİN */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: 
+    linear-gradient(rgba(20, 20, 30, 0.9), rgba(40, 10, 50, 0.9)),
+    url('https://unsplash.com/photos/person-holding-phone-while-holding-ImWVsIHiEWI') center/cover no-repeat fixed;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* MOBİL İÇİN EKLENENLER */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    background-attachment: scroll;
+  }
+  
+  #loginForm, #chatContainer {
+    width: 95%;
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  input[type="text"] {
+    width: 85%;
+    padding: 12px;
+  }
+  
+  button {
+    padding: 12px 20px;
+  }
+  
+  .chat-box {
+    height: 50vh;
+  }
+}
+
+/* ORTAK STİLLER */
+#loginForm, #chatContainer {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(30, 20, 40, 0.7);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(255, 0, 255, 0.3);
+  border: 1px solid rgba(255, 0, 255, 0.2);
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+button {
+  padding: 15px 30px;
+  background: linear-gradient(45deg, #ff00cc, #cc00ff);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  scrollbar-width: thin;
+}
+
+/* DARK MOD DESTEĞİ */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-blend-mode: overlay;
+  }
+}
