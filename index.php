@@ -52,28 +52,28 @@ $chat = new phpFreeChat( $params );
         <li>
           <ul>
             <li class="item">
-              <a href="http://www.phpfreechat.net/overview">Overview</a>
+              <a href="https://www.xn--kadnlarlasohbet-9kc.online//overview">Overview</a>
             </li>
             <li class="item">
-              <a href="http://www.phpfreechat.net/quickstart">Quickstart</a>
+              <a href="https://www.xn--kadnlarlasohbet-9kc.online//quickstart">Quickstart</a>
             </li>
             <li class="item">
-              <a href="http://www.phpfreechat.net/parameters">Parameters list</a>
+              <a href="https://www.xn--kadnlarlasohbet-9kc.online//parameters">Parameters list</a>
             </li>
             <li class="item">
-              <a href="http://www.phpfreechat.net/faq">FAQ</a>
+              <a href="https://www.xn--kadnlarlasohbet-9kc.online//faq">FAQ</a>
             </li>
             <li class="item">
-              <a href="http://www.phpfreechat.net/advanced-configuration">Advanced configuration</a>
+              <a href="https://www.xn--kadnlarlasohbet-9kc.online//advanced-configuration">Advanced configuration</a>
             </li>
             <li class="item">
-              <a href="http://www.phpfreechat.net/customize">Customize</a>
+              <a href="https://www.xn--kadnlarlasohbet-9kc.online//customize">Customize</a>
             </li>
           </ul>
         </li>
       </ul>
       <p class="partner">
-        <a href="http://www.phpfreechat.net"><img alt="phpfreechat.net" src="style/logo_88x31.gif" /></a><br/>
+        <a href="https://www.xn--kadnlarlasohbet-9kc.online/"><img alt="kadınlarlasohbet" src="style/logo_88x31.gif" /></a><br/>
       </p>
 </div>
 
