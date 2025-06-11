@@ -1,0 +1,56 @@
+﻿html, body {
+    border: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+p, ul, ol, form, fieldset, input {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+input, textarea {
+    outline: none;
+}
+
+.hide {
+    display: none;
+}
+
+.clear {
+    clear: both;
+    height: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
